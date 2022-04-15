@@ -1,0 +1,5 @@
+data_extraction:
+  coins : BTC
+  interval : daily
+  output_file_name : raw.RData
+  output_path : data
