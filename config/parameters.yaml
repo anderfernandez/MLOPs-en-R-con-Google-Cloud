@@ -1,0 +1,40 @@
+data_extraction:
+  time_trunc : day
+  category : demanda
+  subcategory : evolucion
+  first_date : 2014-01-01
+  max_time_call : 365
+  output_path : data
+  output_filename_data : raw.RData
+  output_filename_date : last_date.RData
+
+train:
+  resampling : 3 months
+  input : data/raw.RData
+  output_path: model
+  output_filename : model.RData
+  prediction_mode : regression
+  allow_parallel : True
+  parallel_cores : 4
+  models : 
+    boost_tree :
+      parameters :
+        learn_rate : 0.001,0.01,0.1,0.3
+      engine : xgboost
+  neptune :
+    envname : neptune
+    project : Spain-Electricity-Forecast
+  model_output: outputs/model.RData
+  best_model_output: outputs/best_model.RData
+
+predict:
+  horizon: 2 months
+  model_path: outputs/best_model.RData
+  data_path: data/raw.RData
+  predictions_path : outputs/predictions.RData
+
+retrain:
+  predictions_path : outputs/predictions.RData
+  data_path: data/raw.RData
+  max_mae: 2300
+  n_days: 5
