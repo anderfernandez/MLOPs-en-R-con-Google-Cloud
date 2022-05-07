@@ -4,3 +4,6 @@
 .Ruserdata
 README.md
 packrat/lib*/
+.Renviron
+post.nb.html
+post.Rmd
