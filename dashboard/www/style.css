@@ -1,0 +1,33 @@
+.metric_card{
+    border:1px solid lightgray;
+    border-radius:7px;
+    text-align: center;
+    margin: 20px 2%;
+    width:21%;
+    padding:10px 0px;
+}
+
+.metric_card .metric{
+    font-size:1.5rem;
+    font-weight:600;
+}
+
+.metric_card .shiny-text-output{
+    font-size:2.5rem;
+    font-weight:bold;
+
+}
+
+h1{
+    text-align:center;
+    font-weight:bold;
+}
+
+.retrain {
+    float:right;
+    border-radius: 7px;
+    margin:20px 10px;
+    background: lightgray;
+    padding:10px 10px;
+}
+
