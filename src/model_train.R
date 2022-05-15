@@ -6,12 +6,11 @@
 #   Sys.unsetenv('RETICULATE_PYTHON')
 # }
 # 
-# # Setup conda
-# conda_installations = reticulate::conda_list()
-# conda_dir = gsub('\\', '/',
-#                  conda_installations$python[conda_installations$name == neptune_envname], 
-#                  fixed =T)
-# Sys.setenv(RETICULATE_PYTHON = conda_dir)
+# Setup conda
+conda_installations = reticulate::conda_list()
+conda_dir = gsub('\\', '/',
+                 conda_installations$python[conda_installations$name == neptune_envname],
+                 fixed =T)# Sys.setenv(RETICULATE_PYTHON = conda_dir)
 # Install & load libraries  
 
 libs = c('forecast', 'yaml', 'dplyr', 'timetk', 'lubridate',
