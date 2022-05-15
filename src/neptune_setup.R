@@ -1,5 +1,5 @@
 # Load libraries
-libs = c('yaml', 'reticulate','neptune')
+libs = c('yaml', 'reticulate','neptune', 'dplyr')
 sapply(libs[!libs %in% installed.packages()], install.packages)
 sapply(libs, require, character.only = T)
 
