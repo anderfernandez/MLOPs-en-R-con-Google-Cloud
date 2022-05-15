@@ -9,7 +9,7 @@ data_extraction:
   output_filename_date : last_date.RData
 
 train:
-  resampling : 3 months
+  resampling : 1 months
   input : data/raw.RData
   output_path: model
   output_filename : model.RData
@@ -19,7 +19,7 @@ train:
   models : 
     boost_tree :
       parameters :
-        learn_rate : 0.001,0.01,0.1,0.3
+        learn_rate : 0.001,0.01,0.1,0.3,0.5,0.9
       engine : xgboost
   neptune :
     envname : neptune
@@ -38,3 +38,6 @@ retrain:
   data_path: data/raw.RData
   max_mae: 2300
   n_days: 5
+  github_repo: MLOPs-en-R-con-Google-Cloud
+  github_user: anderfernandez
+  github_event_type: check_retrain
