@@ -20,7 +20,9 @@ jobs:
           r-version: '4.1.1'
       
       - name: Create and populate .Renviron file
-        run: echo TOKEN="$secrets.TOKEN" >> ~/.Renviron
+        run: |
+          echo TOKEN="$secrets.TOKEN" >> ~/.Renviron
+          echo api_key="$secrets.API_KEY" >> ~/.Renviron
       
       - name: Setup Neptune
         run: Rscript src/neptune_setup.R
