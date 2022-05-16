@@ -9,9 +9,8 @@
 
 # Setup conda
 conda_installations = reticulate::conda_list()
-warning(conda_installations)
 neptune_envname = yaml::read_yaml('config/parameters.yaml')[['train']]$neptune$envname
-warning(neptune_envname)
+
 
 conda_dir = gsub('\\', '/',
                  conda_installations$python[conda_installations$name == neptune_envname],
@@ -122,12 +121,16 @@ accuracy_table = calibrated_table %>% modeltime_accuracy()
 # Extract parameters for each model
 for(i in 1:nrow(accuracy_table)){
   
+  message('Create connection')
+  
   run <- neptune_init(
     project= neptune_project,
     api_token= neptune_api_key,
     python = 'conda',
     python_path = conda_dir
   )
+  
+  message('Connection created')
   
   # Extract & log parameters
   model_specs = extract_spec_parsnip(workflow$info[[i]]$workflow[[1]])
@@ -136,6 +139,7 @@ for(i in 1:nrow(accuracy_table)){
   parameters[['mode']] = model_specs$mode
   
   for(arg in names(model_specs$args)){
+    message(paste0(i, ' Log: ', arg))
     parameters[[arg]] = as.character(model_specs$args[[arg]])[2]  
   }
   
@@ -143,18 +147,20 @@ for(i in 1:nrow(accuracy_table)){
   
   # Add each metric in the accuracy table
   for(col in 4:ncol(accuracy_table) ){
-    print(col)
+    message(paste0(i, ' Log: ', col))
     metric = colnames(accuracy_table)[col]
     run[paste0("evaluation/",metric)] = accuracy_table[[i, col]]
   }
   
+  message('Saving model')
   saveRDS(workflow$info[[i]]$workflow, model_output)
+  message('Model saved')
   neptune_upload(run["model"], model_output)
-  
+  message('Model uploaded to Neptune')
 }
 
 # Get best model
 best_model = accuracy_table$.model_id[accuracy_table$mae == min(accuracy_table$mae)] 
 
 # Save best model
-saveRDS(calibrated_table[best_model,], best_model_output)
+#saveRDS(calibrated_table[best_model,], best_model_output)
