@@ -8,9 +8,10 @@
 # 
 
 # Setup conda
-neptune_envname = yaml::read_yaml('config/parameters.yaml')[['train']]$neptune$envname
 conda_installations = reticulate::conda_list()
-print(conda_installations)
+warning(conda_installations)
+neptune_envname = yaml::read_yaml('config/parameters.yaml')[['train']]$neptune$envname
+warning(neptune_envname)
 
 conda_dir = gsub('\\', '/',
                  conda_installations$python[conda_installations$name == neptune_envname],
