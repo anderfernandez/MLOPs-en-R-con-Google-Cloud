@@ -6,13 +6,17 @@
 #   Sys.unsetenv('RETICULATE_PYTHON')
 # }
 # 
+
 # Setup conda
+neptune_envname = yaml::read_yaml('config/parameters.yaml')[['train']]$neptune$envname
 conda_installations = reticulate::conda_list()
+print(conda_installations)
+
 conda_dir = gsub('\\', '/',
                  conda_installations$python[conda_installations$name == neptune_envname],
                  fixed =T)# Sys.setenv(RETICULATE_PYTHON = conda_dir)
-# Install & load libraries  
 
+# Install & load libraries  
 libs = c('forecast', 'yaml', 'dplyr', 'timetk', 'lubridate',
          'tidymodels', 'modeltime', 'reticulate','neptune')
 
