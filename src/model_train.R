@@ -40,7 +40,7 @@ best_model_output = train_data_info$best_model_output
 # Read Data
 data = readRDS(input)
 neptune_api_key = Sys.getenv('api_key')
-
+warning(nchar(neptune_api_key))
 # Fix timestamp
 data$datetime = ymd_hms(data$datetime)
 data$date = as.Date(data$datetime)
