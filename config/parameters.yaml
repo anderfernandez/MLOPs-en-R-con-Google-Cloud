@@ -40,4 +40,4 @@ retrain:
   n_days: 5
   github_repo: MLOPs-en-R-con-Google-Cloud
   github_user: anderfernandez
-  github_event_type: check_retrain
+  github_event_type: retrain_model
