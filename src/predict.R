@@ -42,3 +42,5 @@ if(file.exists(predictions_path)){
 
 # Save predictions
 saveRDS(predictions, predictions_path)
+
+predictions %>% ggplot(aes(.index, .value, col = .model_desc)) + geom_line()
