@@ -7,7 +7,7 @@ sapply(libs[!libs %in% installed.packages()], install.packages)
 sapply(libs, require, character.only = T)
 
 # Load Variables
-predict_data_info =  read_yaml('config/parameters.yaml')[['predit_api']]
+predict_data_info =  read_yaml('config/parameters.yaml')[['predict_api']]
 model_url = predict_data_info$model_url
 data_url = predict_data_info$data_url
 
