@@ -8,3 +8,5 @@ packrat/lib*/
 post.nb.html
 post.Rmd
 imagenes
+dashboard/data.RData
+dashboard/predictions.RData
