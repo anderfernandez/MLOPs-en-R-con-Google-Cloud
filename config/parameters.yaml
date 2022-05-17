@@ -27,12 +27,18 @@ train:
   model_output: outputs/model.RData
   best_model_output: outputs/best_model.RData
 
+predit_api:
+  data_url: https://github.com/anderfernandez/MLOPs-en-R-con-Google-Cloud/blob/main/data/raw.RData?raw=True
+  model_url: https://github.com/anderfernandez/MLOPs-en-R-con-Google-Cloud/blob/main/outputs/best_model.RData?raw=True
+  
 predict:
   horizon: 2 months
   model_path: outputs/best_model.RData
   data_path: data/raw.RData
   predictions_path : outputs/predictions.RData
-
+  service_url: https://spain-electricity-forecast-bn347cnddq-ew.a.run.app
+  service_endpoint: get_predictions
+  
 retrain:
   predictions_path : outputs/predictions.RData
   data_path: data/raw.RData
@@ -41,3 +47,4 @@ retrain:
   github_repo: MLOPs-en-R-con-Google-Cloud
   github_user: anderfernandez
   github_event_type: retrain_model
+

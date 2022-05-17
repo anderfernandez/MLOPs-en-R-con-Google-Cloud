@@ -7,14 +7,17 @@ sapply(libs[!libs %in% installed.packages()], install.packages)
 sapply(libs, require, character.only = T)
 
 # Load Variables
-predict_data_info =  read_yaml('config/parameters.yaml')[['predict']]
-model_path = predict_data_info$model_path
-data_path = predict_data_info$data_path
-predictions_path = predict_data_info$predictions_path
+predict_data_info =  read_yaml('config/parameters.yaml')[['predit_api']]
+model_url = predict_data_info$model_url
+data_url = predict_data_info$data_url
+
 
 # Load model
-model = readRDS(model_path)
-data = readRDS(data_path)
+download.file(data_url,"data.RData", mode="wb")
+download.file(model_url,"model.RData", mode="wb")
+
+model = readRDS("model.RData")
+data = readRDS("data.RData")
 
 # Clean data
 data$datetime = ymd_hms(data$datetime)
