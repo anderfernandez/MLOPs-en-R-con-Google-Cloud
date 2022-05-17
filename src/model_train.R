@@ -126,13 +126,19 @@ for(i in 1:nrow(accuracy_table)){
   
   message('Create connection')
   
-  run <- neptune_init(
-    project= neptune_project,
-    api_token= neptune_api_key,
-    python = 'conda',
-    python_path = conda_dir
-  )
-  
+  run = tryCatch({
+    out <- neptune_init(
+      project= neptune_project,
+      api_token= neptune_api_key,
+      python = 'conda',
+      python_path = conda_dir
+    )
+   },
+   error = function(cond){
+     messae(cond)
+     message(reticulate::py_last_error())
+     return(NA)
+   })
   message('Connection created')
   
   # Extract & log parameters
