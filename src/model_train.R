@@ -49,6 +49,9 @@ data$date = as.Date(data$datetime)
 data$percentage = NULL
 data$datetime = NULL
 
+# Get one observation per day
+data = data %>% group_by(date)%>% summarize(value = mean(value))
+
 # Make splits
 splits = data %>%
   time_series_split(assess = resampling, cumulative = TRUE)
