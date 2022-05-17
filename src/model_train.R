@@ -135,7 +135,7 @@ for(i in 1:nrow(accuracy_table)){
     )
    },
    error = function(cond){
-     messae(cond)
+     message(cond)
      message(reticulate::py_last_error())
      return(NA)
    })
@@ -164,12 +164,13 @@ for(i in 1:nrow(accuracy_table)){
   message('Saving model')
   saveRDS(workflow$info[[i]]$workflow, model_output)
   message('Model saved')
-  neptune_upload(run["model"], model_output)
-  message('Model uploaded to Neptune')
+
+  # res = try(run["model"]$upload(model_output)
+  # message('Model uploaded to Neptune')
 }
 
 # Get best model
 best_model = accuracy_table$.model_id[accuracy_table$mae == min(accuracy_table$mae)] 
 
 # Save best model
-#saveRDS(calibrated_table[best_model,], best_model_output)
+saveRDS(calibrated_table[best_model,], best_model_output)
