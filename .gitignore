@@ -11,3 +11,5 @@ imagenes
 dashboard/data.RData
 dashboard/predictions.RData
 .neptune
+model.RData
+data.RData
