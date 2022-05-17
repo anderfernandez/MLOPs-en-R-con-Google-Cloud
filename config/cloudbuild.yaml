@@ -1,7 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/spain-electricity-forecast/github.com/anderfernandez/MLOPs-en-R-con-Google-Cloud:$SHORT_SHA', '.']
+  args: ['build', '-t', 'gcr.io/spain-electricity-forecast/github.com/anderfernandez/mlops-en-r-con-google-cloud:$SHORT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/spain-electricity-forecast/github.com/anderfernandez/MLOPs-en-R-con-Google-Cloud:$SHORT_SHA']
+  args: ['push', 'gcr.io/spain-electricity-forecast/github.com/anderfernandez/mlops-en-r-con-google-cloud:$SHORT_SHA']
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['beta', 'run', 'deploy', 'spain-electricity-forecast', '--image=gcr.io/spain-electricity-forecast/github.com/anderfernandez/MLOPs-en-R-con-Google-Cloud:$SHORT_SHA', '--region=europe-west1', '--platform=managed']
+  args: ['beta', 'run', 'deploy', 'spain-electricity-forecast', '--image=gcr.io/spain-electricity-forecast/github.com/anderfernandez/mlops-en-r-con-google-cloud:$SHORT_SHA', '--region=europe-west1', '--platform=managed']
