@@ -11,10 +11,13 @@
 conda_installations = reticulate::conda_list()
 neptune_envname = yaml::read_yaml('config/parameters.yaml')[['train']]$neptune$envname
 
+message(paste0("Available Conda environments: ", conda_installations$python))
 
 conda_dir = gsub('\\', '/',
                  conda_installations$python[conda_installations$name == neptune_envname],
                  fixed =T)# Sys.setenv(RETICULATE_PYTHON = conda_dir)
+
+message(paste0("Used Conda environments: ", conda_dir))
 
 # Install & load libraries  
 libs = c('forecast', 'yaml', 'dplyr', 'timetk', 'lubridate',
