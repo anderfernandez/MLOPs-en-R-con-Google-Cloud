@@ -48,10 +48,10 @@ server <- function(input, output) {
     
     # Read Data
     download.file(data_url,"data.RData", mode="wb")
-    download.file(predictions_url,"predictions.rds", mode="wb")
+    download.file(predictions_url,"predictions.RData", mode="wb")
     
     data = readRDS("data.RData")
-    predictions = readRDS("predictions.rds")
+    predictions = readRDS("predictions.RData")
     
     # Parse Date
     predictions$.index = as.Date(predictions$.index) 
